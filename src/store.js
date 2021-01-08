@@ -80,6 +80,39 @@ const initialState = {
 }
 
 const reducerEntrenador = (state = initialState, action) => {
+	switch (action.type) {
+		case "AGREGAR_TITULAR":
+			return {
+				...state,
+				titulares: state.titulares.concat(action.jugador),
+				jugadores: state.jugadores.filter((jugador) => jugador.id !== action.jugador.id),
+				// la funcion filter() deja solo los que no tengan el mismo id de este jugador
+			}
+		case "AGREGAR_SUPLENTE":
+			return {
+				...state,
+				suplentes: state.suplentes.concat(action.jugador),
+				jugadores: state.jugadores.filter((jugador) => jugador.id !== action.jugador.id),
+			}
+
+		case "QUITAR_SUPLENTE":
+			return {
+				...state,
+				jugadores: state.jugadores.concat(action.suplente),
+				suplentes: state.suplentes.filter((suplente) => suplente.id !== action.suplente.id),
+			}
+		case "QUITAR_TITULAR":
+			return {
+				...state,
+				jugadores: state.jugadores.concat(action.titular),
+				titulares: state.titulares.filter((titular) => titular.id !== action.titular.id),
+			}
+
+		default:
+			console.log("algo")
+			break
+	}
+
 	return state
 }
 

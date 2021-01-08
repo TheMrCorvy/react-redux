@@ -32,6 +32,12 @@ const mapDispatchToProps = (dispatch) => ({
 			jugador,
 		})
 	},
+	agregarSuplente(jugador) {
+		dispatch({
+			type: "AGREGAR_SUPLENTE",
+			jugador,
+		})
+	},
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Jugadores)
